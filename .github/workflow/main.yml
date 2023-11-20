@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to trigger the deployment
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2  # Check out the repository content
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Provided by GitHub to authenticate in workflow
+        publish_branch: main  # The branch you want to deploy to
+        publish_dir: ./  # The directory that contains built website files
